@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CodeFirstPractice.Models
@@ -22,8 +23,18 @@ namespace CodeFirstPractice.Models
 
         public void CreateShelf(string input)
         {
-            MultiShelves.Add(new Shelves() { Name = input });
-            SaveChanges();
+
+            //Check against database for no repeat shelf.
+
+            if (MultiShelves.Any(x => x.Name == input))
+            {
+                Console.WriteLine("This shelf has already been added, please enter another shelf.");
+            }
+            else
+            {
+                MultiShelves.Add(new Shelves() { Name = input });
+                SaveChanges();
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
