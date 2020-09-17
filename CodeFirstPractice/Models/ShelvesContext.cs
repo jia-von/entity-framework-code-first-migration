@@ -43,9 +43,17 @@ namespace CodeFirstPractice.Models
             //will add model creation here
             modelBuilder.Entity<Shelves>(entity =>
             {
-                entity.Property(e => e.Name)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_general_ci");
+            entity.Property(e => e.Name)
+                .HasCharSet("utf8mb4")
+                .HasCollation("utf8mb4_general_ci");
+
+            entity.HasData(
+                     new Shelves() { Name = "toilet shelf", ID = 3 },
+                     new Shelves() { Name = "school shelf", ID = 4},
+                     new Shelves() { Name = "computer shelf", ID = 5},
+                     new Shelves() { Name = "figurine shelf", ID = 6},
+                     new Shelves() { Name = "game shelf", ID = 7}
+                    );
             });
 
             //Call the partial method in case we add some stuff into another file later
