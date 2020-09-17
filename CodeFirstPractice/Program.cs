@@ -1,4 +1,5 @@
 ﻿using System;
+using CodeFirstPractice.Models;
 
 namespace CodeFirstPractice
 {
@@ -6,7 +7,11 @@ namespace CodeFirstPractice
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using (ShelvesContext context = new ShelvesContext())
+            {
+                Console.WriteLine("Please enter name a shelf: ");
+                context.CreateShelf(Console.ReadLine().Trim().ToLower());
+            }
         }
     }
 }

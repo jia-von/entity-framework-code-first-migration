@@ -18,7 +18,13 @@ namespace CodeFirstPractice.Models
         }
         public DbSet<Shelves> MultiShelves { get; set; }
 
+        // Write a program that will take in a shelf name and add it to the database. For example, CreateShelf(“Games Shelf”) or AddShelf(“Movies Shelf”).
 
+        public void CreateShelf(string input)
+        {
+            MultiShelves.Add(new Shelves() { Name = input });
+            SaveChanges();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
