@@ -59,13 +59,18 @@ namespace CodeFirstPractice.Models
                 .HasCollation("utf8mb4_general_ci");
 
                 entity.HasIndex(e => e.ShelfMaterialID)
-                    .HasName("FK_" + nameof(Shelves) + "_" + nameof(ShelfMaterials));
+                    .HasName("FK_" + nameof(Shelves) + "_" + nameof(ShelfMaterials)); //second problem switcheroo of shelfmaterials shelves
 
                 entity.HasOne(child => child.ShelfMaterials)
                     .WithMany(parent => parent.Shelves)
-                    .HasForeignKey(child => child.ShelfMaterials)
+                    .HasForeignKey(child => child.ShelfMaterialID) //First problem is reference here 
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_" + nameof(Shelves) + "_" + nameof(ShelfMaterials));
+                    .HasConstraintName("FK_" + nameof(Shelves) + "_" + nameof(ShelfMaterials));// change in constraint as well Tammy Setpember 18, 2020 with Bo
+                // 'ShelfMaterials' cannot be used as a property on entity type 'Shelves' because it is configured as a navigation.
+                // accidentally do database update but actually should be migration first
+                // migration remove
+                // addm migration secondmigration
+                // update database 
             });
 
             modelBuilder.Entity<ShelfMaterials>(entity =>
