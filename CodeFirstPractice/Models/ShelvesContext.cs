@@ -58,13 +58,21 @@ namespace CodeFirstPractice.Models
                 .HasCharSet("utf8mb4")
                 .HasCollation("utf8mb4_general_ci");
 
-            entity.HasData(
-                     new Shelves() { Name = "toilet shelf", ID = 3 },
-                     new Shelves() { Name = "school shelf", ID = 4},
-                     new Shelves() { Name = "computer shelf", ID = 5},
-                     new Shelves() { Name = "figurine shelf", ID = 6},
-                     new Shelves() { Name = "game shelf", ID = 7}
-                    );
+                entity.HasIndex(e => e.ShelfMaterialID)
+                    .HasName("FK_" + nameof(Shelves) + "_" + nameof(ShelfMaterials));
+
+                entity.HasOne(child => child.ShelfMaterials)
+                    .WithMany(parent => parent.Shelves)
+                    .HasForeignKey(child => child.ShelfMaterials)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_" + nameof(Shelves) + "_" + nameof(ShelfMaterials));
+            });
+
+            modelBuilder.Entity<ShelfMaterials>(entity =>
+            {
+                entity.Property(e => e.MaterialName)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_general_ci");
             });
 
             //Call the partial method in case we add some stuff into another file later
