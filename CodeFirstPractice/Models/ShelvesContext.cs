@@ -18,6 +18,7 @@ namespace CodeFirstPractice.Models
 
         }
         public DbSet<Shelves> MultiShelves { get; set; }
+        public DbSet<ShelfMaterials> ShelfMaterial { get; set; }
 
         // Write a program that will take in a shelf name and add it to the database. For example, CreateShelf(“Games Shelf”) or AddShelf(“Movies Shelf”).
 
@@ -71,6 +72,13 @@ namespace CodeFirstPractice.Models
                 // migration remove
                 // addm migration secondmigration
                 // update database 
+
+                entity.HasData(new Shelves() { ID = 3, Name = "Mista Shelf", ShelfMaterialID = 1 });
+                entity.HasData(new Shelves() { ID = 4, Name = "Golden Shelf", ShelfMaterialID = 2 });
+                entity.HasData(new Shelves() { ID = 5, Name = "Painful Shelf", ShelfMaterialID = 3 });
+                entity.HasData(new Shelves() { ID = 6, Name = "Mr. Shelf", ShelfMaterialID = 4 });
+                entity.HasData(new Shelves() { ID = 7, Name = "Mr. Shelf", ShelfMaterialID = 5 });
+                entity.HasData(new Shelves() { ID = 11, Name = "Mr. Shelf", ShelfMaterialID = 6 });
             });
 
             modelBuilder.Entity<ShelfMaterials>(entity =>
@@ -78,6 +86,16 @@ namespace CodeFirstPractice.Models
                 entity.Property(e => e.MaterialName)
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_general_ci");
+
+                entity.HasData(
+                    new ShelfMaterials() { MaterialName = "Birch", ID = 1 },
+                    new ShelfMaterials() { MaterialName = "Pine", ID = 2 },
+                    new ShelfMaterials() { MaterialName = "Aspen", ID = 3 },
+                    new ShelfMaterials() { MaterialName = "Cherry", ID = 4 },
+                    new ShelfMaterials() { MaterialName = "Mahogany", ID = 5 },
+                    new ShelfMaterials() { MaterialName = "Endangered Species", ID = 6 }
+                    ); 
+
             });
 
             //Call the partial method in case we add some stuff into another file later
