@@ -4,7 +4,7 @@ The goal of this assignment is meant for me to master ASP.NET Web Application an
 
 ## Summary
 
-I have succesfully created models `ShelfMaterials.cs`, `Shelves.cs`, and `ShelvesContext.cs` (a class that inherites from `DbContext`) from scratch. Throughout this assignment, I used EF migrations create and update my database without direct manipulation of the database using SQL.
+I have succesfully created models `ShelfMaterials.cs`, `Shelves.cs`, and `ShelvesContext.cs` (a class that inherites from `DbContext`) from scratch. Throughout this assignment, I used EF migrations to create and update my database without direct manipulation of the database using SQL.
 
 ## Installation
 
