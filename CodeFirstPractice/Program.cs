@@ -19,6 +19,8 @@ namespace CodeFirstPractice
             {
                 Console.WriteLine("Please enter name a shelf: ");
                 context.CreateShelf(Console.ReadLine().Trim().ToLower());
+
+
             }
         }
     }

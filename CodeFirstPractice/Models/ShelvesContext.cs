@@ -33,7 +33,11 @@ namespace CodeFirstPractice.Models
             }
             else
             {
+                Console.WriteLine("Please enter material type for the shelf: ");
+                string inputMaterial = Console.ReadLine();
                 MultiShelves.Add(new Shelves() { Name = input });
+
+
                 SaveChanges();
             }
         }
